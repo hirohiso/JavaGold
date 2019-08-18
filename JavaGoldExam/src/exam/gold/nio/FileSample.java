@@ -157,7 +157,6 @@ public class FileSample {
             DosFileAttributeView attrView = Files.getFileAttributeView(p, DosFileAttributeView.class);
 
         } catch (IOException e) {
-            // TODO 自動生成された catch ブロック
             e.printStackTrace();
         }
 
