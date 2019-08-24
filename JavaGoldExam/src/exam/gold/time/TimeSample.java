@@ -111,7 +111,8 @@ public class TimeSample {
             Instant it2 = Instant.MIN;
             out.println(it1);
             out.println(it2);
-            it1.plus(0,ChronoUnit.FOREVER);
+            it1.plus(10,ChronoUnit.DAYS);
+            out.println(it1);
 
         }
 
