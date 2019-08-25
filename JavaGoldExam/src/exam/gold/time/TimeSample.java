@@ -28,6 +28,8 @@ public class TimeSample {
         out.println(LocalTime.now());
         //out.println(LocalTime.now().format(dtf4));
         out.println(LocalTime.now().format(dtf5));
+        //逆もできる
+        out.println(dtf5.format(LocalTime.now()));
         out.println(LocalDate.now());
         out.println(LocalDate.now().format(dtf1));
         out.println(LocalDate.now().format(dtf2));
@@ -50,8 +52,21 @@ public class TimeSample {
 
         {
             LocalDate ld1 = LocalDate.now();
-            LocalDate ld2 =ld1.minusDays(2200);
+            LocalDate ld2 = ld1.minusDays(2200);
             out.println(ld2);
+        }
+        /**
+         * 書式
+         */
+        {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy年 MM月 dd日 HH時mm分ss秒");
+            out.println(LocalDateTime.now().format(dtf));
+            String target = "2019年 08月 24日 13時41分03秒";
+            LocalDateTime ldt = LocalDateTime.from(dtf.parse(target));
+            out.println(ldt);
+            //こっちも同じ挙動
+            LocalDateTime ldt2 = LocalDateTime.parse(target,dtf);
+            out.println(ldt2);
         }
 
         /*
@@ -66,10 +81,10 @@ public class TimeSample {
             out.println(zi);
             out.println(zi2);
 
-            ZonedDateTime  zdt = ZonedDateTime.now(zi);
-            ZonedDateTime  zdt2 = ZonedDateTime.now(zi2);
-            ZonedDateTime  zdt3 = ZonedDateTime.now(zi3);
-            ZonedDateTime  zdt4 = ZonedDateTime.now(zi4);
+            ZonedDateTime zdt = ZonedDateTime.now(zi);
+            ZonedDateTime zdt2 = ZonedDateTime.now(zi2);
+            ZonedDateTime zdt3 = ZonedDateTime.now(zi3);
+            ZonedDateTime zdt4 = ZonedDateTime.now(zi4);
 
             out.println(zdt);
             out.println(zdt2);
@@ -86,7 +101,7 @@ public class TimeSample {
         {
             OffsetDateTime odt = OffsetDateTime.now();
             out.println(odt);
-            OffsetDateTime odt2 = OffsetDateTime.of(LocalDateTime.now(),ZoneOffset.of("+01:00"));
+            OffsetDateTime odt2 = OffsetDateTime.of(LocalDateTime.now(), ZoneOffset.of("+01:00"));
             out.println(odt2);
             //ローカルの時刻を固定し、時差だけ調整
             out.println(odt2.atZoneSimilarLocal(ZoneId.systemDefault()));
@@ -111,7 +126,7 @@ public class TimeSample {
             Instant it2 = Instant.MIN;
             out.println(it1);
             out.println(it2);
-            it1.plus(10,ChronoUnit.DAYS);
+            it1.plus(10, ChronoUnit.DAYS);
             out.println(it1);
 
         }
