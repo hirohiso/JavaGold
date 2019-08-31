@@ -141,32 +141,42 @@ public class FileSample {
         }
         {
             //作成
-
+            Path path1 = Paths.get("resouces","sample.txt");
+            Files.createFile(path1);
             //すでに作成済み
-
+            try{
+            Files.createFile(path1);
+            }catch(IOException ex){
+                ex.printStackTrace();
+            }
             //更新
-
             //更新ファイルがない
+
+
             //コピー
             //コピー先がある
 
             //削除
+            Files.delete(path1);
             //削除するファイルがない
+
+
             //移動
             //移動先がない
             //移動先に同一ファイルがある
 
+            //検索
             //ファイル内検索
 
             //ディレクトリ内のファイル検索
         }
     }
 
-    private static void showAttr(Path p){
+    private static void showAttr(Path p) {
         try {
             //こいつは読み取りだけ
             BasicFileAttributes attr = Files.readAttributes(p, BasicFileAttributes.class);
-            System.out.println("size            : "  +attr.size());    // 各メソッドで属性にアクセス
+            System.out.println("size            : " + attr.size()); // 各メソッドで属性にアクセス
             System.out.println("lastModifiedTime: " + attr.lastModifiedTime());
             System.out.println("lastAccessTime   : " + attr.lastAccessTime());
             System.out.println("creationTime   : " + attr.creationTime());
