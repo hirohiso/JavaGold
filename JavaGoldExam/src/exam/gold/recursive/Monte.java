@@ -1,5 +1,6 @@
 package exam.gold.recursive;
 
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 
 public class Monte {
@@ -9,7 +10,8 @@ public class Monte {
     public static void main(String[] args) {
         long count = 1000000;
         ForkJoinTask<Long> task = new RecursiveMonte(count);
-        long result = task.fork().join();
+        ForkJoinPool pool = new ForkJoinPool();
+        long result = pool.invoke(task);
         System.out.println((double)result/count * 4D);
     }
 }

@@ -26,8 +26,9 @@ public class RecursiveMonte extends RecursiveTask<Long> {
             long a = this.tryCount / 2;
             RecursiveMonte first = new RecursiveMonte(a);
             RecursiveMonte second = new RecursiveMonte(this.tryCount-a);
-            first.fork();
-            second.fork();
+            //first.fork();
+            //second.fork();
+            invokeAll(first,second);
             resut = first.join() + second.join();
         }
         return resut;
